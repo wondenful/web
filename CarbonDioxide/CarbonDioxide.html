@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>碳排放结构、碳交易及相关政策</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;}
+</style>
+
+</head>
+<body>
+
+	<div class="wrap">
+		<div class="wid_1820">
+
+			<div class="header">
+				<p class="tmtext"></p>
+				<p>
+					<span class="hefont">碳排放结构、碳交易及相关政策</span>
+				</p>
+				
+			</div>
+					
+			<div class="baner">
+				<h2><a class="jybt">结构图</a></h2>
+				<h2><a class="wbgl">碳交易行情</a></h2>
+				<h2><a class="kbbt">碳交易总值</a></h2>
+				<h2><a href="../DataBrowsing/China/China.html">总览</a></h2>
+				<h2><a href="../Forecast/DataForecast.html">预测</a></h2>
+				<h2><a href="../Welcome/Welcome.html">首页</a></h2>
+			</div>
+
+			<div class="content content1"> 
+				<p class="ctitle"></p>
+				<div class="cznl">
+
+					<!-- 关键代码 -->
+
+					
+					<div id="pie1" class="echart_div pie1"></div>
+					<div id="pie2" class="echart_div pie2"></div>
+					<div class="piebt piebt1">碳交易总量(万吨)</div>
+					<div class="piebt piebt2">碳交易总额(万元)</div>
+
+
+					
+					<!-- 结构图模块 -->
+					<div id="guanxi" class="echart_div guanxi"></div>
+					<div class="gxlist tb"><h3>政策法规</h3>
+						<div class="sanlianbt"><a href="WordCloud.html">网络舆情云图</a></div>
+						<ul>
+							<a href="https://www.99co2.com/#/news_xiang?id=987">
+								<li>发改委等部门重点领域节能降碳改造升级实施指南</li>
+							</a>
+							<a href="https://www.ccchina.org.cn/Detail.aspx?newsId=73916&TId=60">
+								<li>《中国应对气候变化的政策与行动》白皮书发布</li>
+							</a>
+							<a href="https://www.99co2.com/#/news_xiang?id=971">
+								<li>2021年国家发改委低碳政策汇总</li>
+							</a>
+							<a href="https://www.99co2.com/#/news_xiang?id=912">
+								<li>2022年全国生态环境保护工作会议</li>
+							</a>
+							<a href="http://www.mnr.gov.cn/sj/qtsj/202003/t20200311_2501199.html">
+								<li>2019年中国国土绿化状况公报</li>
+							</a>
+							<a href="https://www.mee.gov.cn/zcwj/zyygwj/202110/t20211024_957580.shtml">
+								<li>国务院关于做好碳达峰碳中和工作的意见</li>
+							</a>
+							<a href="https://www.mee.gov.cn/ywdt/dfnews/202203/t20220331_973181.shtml">
+								<li>河北出台方案促进消费绿色转型升级</li>
+							</a>
+							<a href="https://www.mee.gov.cn/ywdt/hjywnews/202204/t20220403_973652.shtml">
+								<li>生态环境部一周要闻（3.27-4.2）</li>
+							</a>
+							<a href="https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202204/t20220402_973527.html">
+								<li>关于推荐清洁生产先进技术的通知</li>
+							</a>
+							<a href="https://www.mee.gov.cn/xxgk2018/xxgk/xxgk15/202103/t20210318_825148.html">
+								<li>碳达峰碳中和基础研究研讨会在京召开</li>
+							</a>
+							<a href="https://www.mee.gov.cn/zcwj/gwywj/202110/t20211026_957879.shtml">
+								<li>国务院关于印发2030年前碳达峰行动方案的通知</li>
+							</a>
+							<a href="https://www.mee.gov.cn/zcwj/gwywj/202102/t20210222_821923.shtml">
+								<li>国务院关于加快建立健全绿色低碳循环发展经济体系的指导意见</li>
+							</a>
+						</ul>
+					</div>
+
+					<!-- 碳交易行情 -->
+					<div class="jydt">
+						<!-- 统计图 -->
+						<div class="lins1" id = "lins1"></div>						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="libs/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="libs/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- 发散图ecahrt -->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/sanlian.js"></script>
+<script>
+
+	$(function(){
+		var titme1="";
+		
+		$(".baner a").click(function(){
+		
+			$(".baner a").removeClass("ahover");
+			$(".cznl>div").css("display","none");
+			$(".cznl").css("display","block");
+			var chartid = $(this).attr("class");
+
+			if(chartid === "jybt"){
+				$(".ctitle").html("温室效应结构图");
+				$("#guanxi,.gxlist").css("display","block");
+			}
+			else if(chartid === "wbgl"){
+				$(".jydt").css("display","block");
+				var lins1 = echarts.init(document.getElementById('lins1'));
+				lins1.setOption(option1);
+				$(".ctitle").html("历年碳交易行情统计");
+			}
+			
+			else if(chartid === "kbbt"){
+				$(".ctitle").html("碳交易量、交易额");
+				$("#pie1,.piebt").css("display","block");
+				$("#pie2,.piebt").css("display","block");
+				var myChart2 = echarts.init(document.getElementById('pie1'));
+				var myChart3 = echarts.init(document.getElementById('pie2'));
+      			myChart2.setOption(option2);
+      			myChart3.setOption(option22);
+			}
+			
+			$(this).addClass("ahover");
+			
+			
+		})
+		var address = window.location.href;
+		if(address.split("?")[1] == "1"){
+			$(".wbgl").click();
+			//window.location.href = "index.html";
+			   		var url = window.location.href;
+					url = url.split('?')[0];
+			        window.history.pushState({}, 0, url);
+		}
+		else{
+			$(".baner .jybt").click();
+		}
+		
+	})
+</script>
